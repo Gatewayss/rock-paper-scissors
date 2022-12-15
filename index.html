@@ -8,18 +8,56 @@
   </head>
   <body>
     <script>
+      //let person = prompt("rock, paper or scissors?");
+
+      let computerScore = 0;
+      let playerScore = 0;
+      let roundWinner = "";
+
       function playRound(playerSelection, computerSelection) {
-        // your code here!
+        if (playerSelection.toLowerCase() === computerSelection.toLowerCase()) {
+          return "tie!";
+        } else if (
+          (computerSelection === "rock" && playerSelection === "scissors") ||
+          (computerSelection === "scissors" && playerSelection === "paper") ||
+          (computerSelection === "paper" && playerSelection === "rock")
+        ) {
+          playerScore++;
+          roundWinner = "player";
+          return `human won with ${playerSelection}`;
+        } else {
+          computerScore++;
+          roundWinner = "computer";
+          return `computer won with ${computerSelection}`;
+        }
       }
 
-      const playerSelection = "rock";
-      const computerSelection = getComputerChoice();
+      function getComputerChoice() {
+        let computerIndex = Math.floor(Math.random() * 3);
+        switch (computerIndex) {
+          case 0:
+            return "rock";
+            break;
+          case 1:
+            return "paper";
+            break;
+          default:
+            return "scissors";
+            break;
+        }
+      }
+      computerSelection = getComputerChoice();
+      let computerMessage = `computer choose ${computerSelection}`
+      console.log(computerMessage);
 
-      for (let i = 0; i < 5; i++) {
-        // your code here!
+      let playerSelection = prompt("rock, paper or scissors?");
+      playerSelection = `you choose ${playerSelection}`
+      console.log(playerSelection);
+
+      function isGameOver() {
+        return playerScore === 5 || computerScore === 5;
       }
 
-      
       console.log(playRound(playerSelection, computerSelection));
     </script>
   </body>
