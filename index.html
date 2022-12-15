@@ -8,13 +8,37 @@
   </head>
   <body>
     <script>
-      function playRound(playerSelection, computerSelection) {
-        // your code here!
-      }
+      const human = prompt("Rock, Paper, or Scissors");
+      const choices = ["Rock", "Paper", "Scissors"];
+      const rock = "Rock";
+      const paper = "Paper";
+      const scissors = "Scissors";
 
-      const playerSelection = "rock";
-      const computerSelection = getComputerChoice();
-      console.log(playRound(playerSelection, computerSelection));
+       function computerChoice() {
+        let computerIndex = choices[Math.floor((Math.random() * 3) + 1)]
+        return computerIndex
+      }
+      
+      const Game = function (human, computer) {
+        if (human === computer) {
+          console.log("Tie");
+        } else {
+          if (
+            (human === rock && computer === scissors) ||
+            (human === paper && computer === rock) ||
+            (human === scissors && computer === paper)
+          ) {
+            console.log("Human Wins!");
+          } else {
+            console.log("Computer Wins!");
+          }
+        }
+      };
+
+      console.log(`your choice: ${human}`)
+      console.log(`Computer choice: ${computerChoice()}`)
+
+      Game(human, computerChoice());
     </script>
   </body>
 </html>
